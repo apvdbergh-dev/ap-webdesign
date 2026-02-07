@@ -2,13 +2,21 @@
 <html lang="nl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#0f172a">
     <title>AP Webdesigns | Moderne websites, slim gebouwd met AI</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            width: 100%;
         }
 
         :root {
@@ -27,16 +35,27 @@
             --card-bg: rgba(30, 41, 59, 0.8);
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, var(--primary) 0%, #1a1a2e 50%, #16213e 100%);
             color: var(--text);
             line-height: 1.6;
             overflow-x: hidden;
+            width: 100%;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Prevent horizontal scroll */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary) 0%, #1a1a2e 50%, #16213e 100%);
+            z-index: -2;
         }
 
         /* Animated Background */
@@ -48,6 +67,7 @@
             height: 100%;
             z-index: -1;
             overflow: hidden;
+            pointer-events: none;
         }
 
         .bg-animation::before {
@@ -73,25 +93,24 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(15, 23, 42, 0.9);
+            background: rgba(15, 23, 42, 0.95);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(59, 130, 246, 0.3);
             z-index: 1000;
             padding: 1rem 0;
-            transition: all 0.3s;
         }
 
         .nav-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 1rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .logo {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: 800;
             background: linear-gradient(135deg, var(--accent-light), var(--gradient-3));
             -webkit-background-clip: text;
@@ -102,7 +121,7 @@
 
         .nav-links {
             display: flex;
-            gap: 2.5rem;
+            gap: 1.5rem;
             list-style: none;
         }
 
@@ -110,6 +129,7 @@
             color: var(--text);
             text-decoration: none;
             font-weight: 500;
+            font-size: 0.9rem;
             position: relative;
             padding: 0.5rem 0;
             transition: color 0.3s;
@@ -141,9 +161,10 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 8rem 2rem 4rem;
+            padding: 6rem 1rem 3rem;
             position: relative;
             overflow: hidden;
+            width: 100%;
         }
 
         .hero::before {
@@ -183,6 +204,8 @@
             position: relative;
             z-index: 1;
             max-width: 900px;
+            width: 100%;
+            padding: 0 0.5rem;
         }
 
         .hero-badge {
@@ -190,24 +213,25 @@
             background: rgba(59, 130, 246, 0.2);
             border: 1px solid var(--accent);
             color: var(--accent-light);
-            padding: 0.5rem 1.5rem;
+            padding: 0.5rem 1rem;
             border-radius: 50px;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             font-weight: 600;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             backdrop-filter: blur(10px);
         }
 
         .hero h1 {
-            font-size: clamp(3rem, 6vw, 5rem);
+            font-size: clamp(2rem, 8vw, 5rem);
             font-weight: 800;
             line-height: 1.1;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             background: linear-gradient(135deg, var(--white) 0%, var(--accent-light) 50%, var(--gradient-3) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: gradient 8s ease infinite;
             background-size: 200% 200%;
+            word-wrap: break-word;
         }
 
         @keyframes gradient {
@@ -217,12 +241,13 @@
         }
 
         .hero p {
-            font-size: 1.4rem;
+            font-size: clamp(1rem, 4vw, 1.4rem);
             color: var(--text-dark);
-            margin-bottom: 2.5rem;
+            margin-bottom: 2rem;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
+            padding: 0 0.5rem;
         }
 
         .cta-group {
@@ -230,6 +255,7 @@
             gap: 1rem;
             justify-content: center;
             flex-wrap: wrap;
+            padding: 0 0.5rem;
         }
 
         .cta-button {
@@ -238,15 +264,16 @@
             gap: 0.5rem;
             background: linear-gradient(135deg, var(--accent), var(--gradient-2));
             color: white;
-            padding: 1.2rem 2.5rem;
+            padding: 1rem 1.5rem;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: clamp(0.9rem, 3vw, 1.1rem);
             transition: all 0.3s;
             box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
             border: none;
             cursor: pointer;
+            white-space: nowrap;
         }
 
         .cta-button:hover {
@@ -267,50 +294,62 @@
 
         /* Sections */
         section {
-            padding: 6rem 2rem;
+            padding: 4rem 1rem;
             max-width: 1200px;
             margin: 0 auto;
             position: relative;
+            width: 100%;
         }
 
         h2 {
-            font-size: 2.8rem;
+            font-size: clamp(1.8rem, 6vw, 2.8rem);
             font-weight: 800;
             text-align: center;
             margin-bottom: 1rem;
             background: linear-gradient(135deg, var(--white), var(--accent-light));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            padding: 0 0.5rem;
         }
 
         .section-subtitle {
             text-align: center;
             color: var(--text-dark);
-            font-size: 1.2rem;
-            margin-bottom: 4rem;
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            margin-bottom: 3rem;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
+            padding: 0 1rem;
         }
 
-        /* Services Grid - 3 Columns with Hover */
+        /* Services Grid */
         .services-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            padding: 0 0.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .services-container {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 2rem;
+            }
         }
 
         .service-card {
             background: var(--card-bg);
             border: 1px solid rgba(59, 130, 246, 0.2);
-            border-radius: 24px;
-            padding: 3rem 2rem;
+            border-radius: 20px;
+            padding: 2rem 1.5rem;
             position: relative;
             overflow: hidden;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
             backdrop-filter: blur(10px);
+            width: 100%;
         }
 
         .service-card::before {
@@ -325,33 +364,34 @@
             transition: opacity 0.4s;
         }
 
-        .service-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            border-color: var(--accent);
-            box-shadow: 0 30px 60px rgba(59, 130, 246, 0.2);
-        }
-
-        .service-card:hover::before {
+        .service-card:hover::before, .service-card:active::before {
             opacity: 1;
         }
 
+        .service-card:hover, .service-card:active {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2);
+        }
+
         .service-icon {
-            font-size: 4rem;
-            margin-bottom: 1.5rem;
+            font-size: 3rem;
+            margin-bottom: 1rem;
             display: block;
         }
 
         .service-card h3 {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             color: var(--white);
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
             font-weight: 700;
         }
 
         .service-card p {
             color: var(--text-dark);
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+            font-size: 0.95rem;
         }
 
         .service-hover-content {
@@ -361,26 +401,27 @@
             opacity: 0;
         }
 
-        .service-card:hover .service-hover-content {
+        .service-card:hover .service-hover-content, .service-card:active .service-hover-content {
             max-height: 300px;
             opacity: 1;
             transition: max-height 0.4s ease-in, opacity 0.4s ease-in;
         }
 
         .service-hover-content p {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             color: var(--text);
-            margin-top: 1rem;
-            padding-top: 1rem;
+            margin-top: 0.8rem;
+            padding-top: 0.8rem;
             border-top: 1px solid rgba(59, 130, 246, 0.3);
         }
 
         .more-info-btn {
             display: inline-block;
-            margin-top: 1rem;
+            margin-top: 0.8rem;
             color: var(--accent-light);
             text-decoration: none;
             font-weight: 600;
+            font-size: 0.9rem;
             transition: color 0.3s;
         }
 
@@ -391,7 +432,7 @@
         /* Detail Pages */
         .detail-section {
             display: none;
-            background: rgba(15, 23, 42, 0.95);
+            background: rgba(15, 23, 42, 0.98);
             position: fixed;
             top: 0;
             left: 0;
@@ -399,7 +440,7 @@
             height: 100%;
             z-index: 2000;
             overflow-y: auto;
-            padding: 6rem 2rem;
+            padding: 5rem 1rem 2rem;
             backdrop-filter: blur(20px);
         }
 
@@ -417,25 +458,27 @@
             max-width: 800px;
             margin: 0 auto;
             background: var(--card-bg);
-            border-radius: 30px;
-            padding: 4rem;
+            border-radius: 20px;
+            padding: 2rem 1.5rem;
             border: 1px solid rgba(59, 130, 246, 0.3);
+            width: 100%;
         }
 
         .close-detail {
-            position: absolute;
-            top: 2rem;
-            right: 2rem;
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
             background: rgba(255, 255, 255, 0.1);
             border: none;
             color: white;
-            width: 50px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
             font-size: 1.5rem;
             cursor: pointer;
             transition: all 0.3s;
             backdrop-filter: blur(10px);
+            z-index: 2001;
         }
 
         .close-detail:hover {
@@ -444,22 +487,41 @@
         }
 
         /* About Section */
+        .about-section {
+            background: rgba(255,255,255,0.02);
+            border-radius: 30px;
+            margin: 2rem auto;
+            padding: 3rem 1rem;
+            width: calc(100% - 2rem);
+        }
+
         .about-content {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 4rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
             align-items: center;
-            margin-top: 3rem;
+            margin-top: 2rem;
+        }
+
+        @media (min-width: 968px) {
+            .about-content {
+                display: grid;
+                grid-template-columns: 1fr 2fr;
+                gap: 3rem;
+                align-items: center;
+            }
         }
 
         .profile-card {
             background: linear-gradient(135deg, var(--card-bg), rgba(59, 130, 246, 0.1));
             border: 2px solid rgba(59, 130, 246, 0.3);
-            border-radius: 30px;
-            padding: 3rem 2rem;
+            border-radius: 24px;
+            padding: 2rem 1.5rem;
             text-align: center;
             position: relative;
             overflow: hidden;
+            width: 100%;
+            max-width: 350px;
         }
 
         .profile-card::before {
@@ -478,23 +540,23 @@
             position: relative;
             z-index: 1;
             background: var(--primary);
-            border-radius: 20px;
-            padding: 2rem;
+            border-radius: 16px;
+            padding: 1.5rem;
         }
 
         .avatar {
-            width: 150px;
-            height: 150px;
+            width: 120px;
+            height: 120px;
             background: linear-gradient(135deg, var(--accent), var(--gradient-2));
             border-radius: 50%;
-            margin: 0 auto 1.5rem;
+            margin: 0 auto 1rem;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: 800;
-            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.3);
+            box-shadow: 0 15px 30px rgba(59, 130, 246, 0.3);
         }
 
         .status {
@@ -503,17 +565,17 @@
             gap: 0.5rem;
             background: rgba(34, 197, 94, 0.2);
             color: #4ade80;
-            padding: 0.5rem 1rem;
+            padding: 0.4rem 0.8rem;
             border-radius: 50px;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             font-weight: 600;
             border: 1px solid rgba(34, 197, 94, 0.3);
         }
 
         .status::before {
             content: '';
-            width: 8px;
-            height: 8px;
+            width: 6px;
+            height: 6px;
             background: #4ade80;
             border-radius: 50%;
             animation: pulse 2s infinite;
@@ -521,69 +583,84 @@
 
         @keyframes pulse {
             0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.7); }
-            50% { opacity: 0.8; box-shadow: 0 0 0 10px rgba(74, 222, 128, 0); }
+            50% { opacity: 0.8; box-shadow: 0 0 0 8px rgba(74, 222, 128, 0); }
         }
 
         .about-text {
-            font-size: 1.2rem;
-            line-height: 2;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            width: 100%;
         }
 
         .about-text p {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
 
         .quote {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-style: italic;
             color: var(--accent-light);
-            border-left: 4px solid var(--accent);
-            padding-left: 1.5rem;
-            margin: 2rem 0;
+            border-left: 3px solid var(--accent);
+            padding-left: 1rem;
+            margin: 1.5rem 0;
         }
 
         /* Target Audience */
         .audience-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin-top: 2rem;
+            padding: 0 0.5rem;
+        }
+
+        @media (min-width: 640px) {
+            .audience-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .audience-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
         }
 
         .audience-card {
             background: var(--card-bg);
             border: 1px solid rgba(59, 130, 246, 0.2);
-            border-radius: 20px;
-            padding: 2rem;
+            border-radius: 16px;
+            padding: 1.5rem;
             text-align: center;
             transition: all 0.3s;
             backdrop-filter: blur(10px);
         }
 
-        .audience-card:hover {
+        .audience-card:hover, .audience-card:active {
             transform: translateY(-5px);
             border-color: var(--accent);
-            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2);
+            box-shadow: 0 15px 30px rgba(59, 130, 246, 0.2);
         }
 
         .audience-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+            font-size: 2.5rem;
+            margin-bottom: 0.8rem;
         }
 
         .audience-card h3 {
             color: var(--white);
             margin-bottom: 0.5rem;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
         }
 
         /* Contact Section */
         .contact-section {
             background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(118, 75, 162, 0.1));
-            border-radius: 40px;
+            border-radius: 30px;
             border: 1px solid rgba(59, 130, 246, 0.3);
-            padding: 4rem 3rem;
-            margin: 4rem auto;
+            padding: 2.5rem 1rem;
+            margin: 2rem auto;
+            width: calc(100% - 1rem);
             position: relative;
             overflow: hidden;
         }
@@ -593,36 +670,45 @@
             position: absolute;
             top: -50%;
             right: -20%;
-            width: 600px;
-            height: 600px;
+            width: 400px;
+            height: 400px;
             background: radial-gradient(circle, rgba(59, 130, 246, 0.2) 0%, transparent 70%);
             border-radius: 50%;
         }
 
         .contact-container {
-            display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            gap: 4rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
             position: relative;
             z-index: 1;
+            width: 100%;
+        }
+
+        @media (min-width: 968px) {
+            .contact-container {
+                display: grid;
+                grid-template-columns: 1fr 1.5fr;
+                gap: 3rem;
+            }
         }
 
         .contact-info h3 {
-            font-size: 2rem;
+            font-size: 1.8rem;
             margin-bottom: 1rem;
             color: var(--white);
         }
 
         .contact-info > p {
             color: var(--text-dark);
-            margin-bottom: 2rem;
-            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
         }
 
         .contact-details {
             display: flex;
             flex-direction: column;
-            gap: 1.5rem;
+            gap: 1rem;
         }
 
         .contact-item {
@@ -630,8 +716,8 @@
             align-items: center;
             gap: 1rem;
             background: rgba(255, 255, 255, 0.05);
-            padding: 1.2rem;
-            border-radius: 15px;
+            padding: 1rem;
+            border-radius: 12px;
             border: 1px solid rgba(59, 130, 246, 0.2);
             transition: all 0.3s;
         }
@@ -639,15 +725,15 @@
         .contact-item:hover {
             background: rgba(59, 130, 246, 0.1);
             border-color: var(--accent);
-            transform: translateX(10px);
+            transform: translateX(5px);
         }
 
         .contact-item a {
             color: var(--accent-light);
             text-decoration: none;
             font-weight: 600;
-            font-size: 1.1rem;
-            transition: color 0.3s;
+            font-size: 1rem;
+            word-break: break-all;
         }
 
         .contact-item a:hover {
@@ -655,48 +741,51 @@
         }
 
         .contact-icon {
-            font-size: 1.5rem;
-            width: 50px;
-            height: 50px;
+            font-size: 1.2rem;
+            width: 40px;
+            height: 40px;
+            min-width: 40px;
             background: linear-gradient(135deg, var(--accent), var(--gradient-2));
-            border-radius: 12px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        /* Form Styles */
+        /* Form Styles - FIXED FOR MOBILE */
         .contact-form {
             background: rgba(255, 255, 255, 0.05);
-            padding: 2.5rem;
-            border-radius: 24px;
+            padding: 1.5rem;
+            border-radius: 20px;
             border: 1px solid rgba(59, 130, 246, 0.2);
             backdrop-filter: blur(10px);
+            width: 100%;
         }
 
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.2rem;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
             font-weight: 600;
             color: var(--accent-light);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
 
         .form-group input,
         .form-group textarea {
             width: 100%;
-            padding: 1rem;
+            padding: 0.9rem;
             background: rgba(255, 255, 255, 0.05);
             border: 2px solid rgba(59, 130, 246, 0.2);
-            border-radius: 12px;
+            border-radius: 10px;
             color: var(--white);
             font-family: inherit;
-            font-size: 1rem;
+            font-size: 16px; /* Prevents zoom on iOS */
             transition: all 0.3s;
+            -webkit-appearance: none;
         }
 
         .form-group input:focus,
@@ -704,7 +793,6 @@
             outline: none;
             border-color: var(--accent);
             background: rgba(59, 130, 246, 0.1);
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
         }
 
         .form-group input::placeholder,
@@ -716,28 +804,30 @@
             width: 100%;
             background: linear-gradient(135deg, var(--accent), var(--gradient-2));
             color: white;
-            padding: 1.2rem;
+            padding: 1rem;
             border: none;
-            border-radius: 12px;
-            font-size: 1.1rem;
+            border-radius: 10px;
+            font-size: 1rem;
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s;
             box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+            -webkit-appearance: none;
         }
 
         .submit-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(59, 130, 246, 0.4);
         }
 
         /* Footer */
         footer {
             text-align: center;
-            padding: 3rem 2rem;
+            padding: 2rem 1rem;
             border-top: 1px solid rgba(59, 130, 246, 0.2);
             color: var(--text-dark);
-            margin-top: 4rem;
+            margin-top: 2rem;
+            width: 100%;
         }
 
         .footer-content {
@@ -748,13 +838,13 @@
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
         }
 
         .social-links a {
-            width: 50px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
             background: rgba(59, 130, 246, 0.1);
             border: 1px solid rgba(59, 130, 246, 0.3);
             border-radius: 50%;
@@ -763,41 +853,47 @@
             justify-content: center;
             color: var(--accent-light);
             text-decoration: none;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             transition: all 0.3s;
         }
 
         .social-links a:hover {
             background: var(--accent);
             color: white;
-            transform: translateY(-5px);
+            transform: translateY(-3px);
         }
 
-        /* Responsive */
-        @media (max-width: 968px) {
-            .about-content,
-            .contact-container {
-                grid-template-columns: 1fr;
+        /* Prevent zoom and scroll issues */
+        @media screen and (max-width: 768px) {
+            html, body {
+                position: relative;
+                overflow-x: hidden;
+                width: 100%;
             }
-
-            .services-container {
-                grid-template-columns: 1fr;
+            
+            section {
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
             }
-
-            .nav-links {
-                display: none;
+            
+            .contact-section {
+                margin-left: 0.5rem;
+                margin-right: 0.5rem;
+                width: calc(100% - 1rem);
             }
-
-            .hero h1 {
-                font-size: 2.5rem;
+            
+            .about-section {
+                margin-left: 0.5rem;
+                margin-right: 0.5rem;
+                width: calc(100% - 1rem);
             }
         }
 
         /* Scroll animations */
         .fade-in {
             opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s, transform 0.8s;
+            transform: translateY(20px);
+            transition: opacity 0.6s, transform 0.6s;
         }
 
         .fade-in.visible {
@@ -818,7 +914,7 @@
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#diensten">Diensten</a></li>
-                <li><a href="#over">Over mij</a></li>
+                <li><a href="#over">Over</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
@@ -829,7 +925,7 @@
         <div class="hero-content">
             <div class="hero-badge">🚀 Beschikbaar voor nieuwe projecten</div>
             <h1>Moderne websites<br>slim gebouwd met AI</h1>
-            <p>Ik help bedrijven aan een professionele online aanwezigheid — snel, betrouwbaar en op maat gemaakt voor jouw succes.</p>
+            <p>Ik help bedrijven aan een professionele online aanwezigheid — snel, betrouwbaar en op maat gemaakt.</p>
             <div class="cta-group">
                 <a href="#contact" class="cta-button">Laten we kennismaken →</a>
                 <a href="#diensten" class="cta-button secondary">Bekijk diensten</a>
@@ -849,7 +945,7 @@
                 <h3>Website Design</h3>
                 <p>Strakke en moderne ontwerpen die vertrouwen uitstralen en jouw merk versterken.</p>
                 <div class="service-hover-content">
-                    <p>Ik creëer visueel verbluffende designs die niet alleen mooi zijn, maar ook converteren. Met oog voor typografie, kleurpsychologie en gebruikerservaring zorg ik dat jouw website indruk maakt.</p>
+                    <p>Ik creëer visueel verbluffende designs die converteren. Met oog voor typografie, kleurpsychologie en gebruikerservaring.</p>
                     <a href="#" class="more-info-btn" onclick="event.stopPropagation(); openDetail('design')">Meer info →</a>
                 </div>
             </div>
@@ -857,10 +953,10 @@
             <!-- AI Ondersteund -->
             <div class="service-card" onclick="openDetail('ai')">
                 <span class="service-icon">🤖</span>
-                <h3>AI-Ondersteund Bouwen</h3>
+                <h3>AI-Ondersteund</h3>
                 <p>Slim gebruik van AI om sneller en efficiënter te werken zonder in te leveren op kwaliteit.</p>
                 <div class="service-hover-content">
-                    <p>Door AI-tools strategisch in te zetten kan ik tot 50% sneller werken. Dit betekent lagere kosten voor jou en een snellere time-to-market, zonder concessies te doen aan kwaliteit of uniciteit.</p>
+                    <p>AI-tools voor 50% snellere development. Lagere kosten, snellere time-to-market, zonder concessies.</p>
                     <a href="#" class="more-info-btn" onclick="event.stopPropagation(); openDetail('ai')">Meer info →</a>
                 </div>
             </div>
@@ -868,10 +964,10 @@
             <!-- Maatwerk -->
             <div class="service-card" onclick="openDetail('custom')">
                 <span class="service-icon">✨</span>
-                <h3>Maatwerk & Professioneel</h3>
+                <h3>Maatwerk</h3>
                 <p>Perfect voor bedrijven die een professionele online aanwezigheid willen.</p>
                 <div class="service-hover-content">
-                    <p>Geen standaard templates, maar maatwerk dat past bij jouw bedrijf. Van custom functionaliteiten tot unieke interacties — ik bouw wat jij nodig hebt om te groeien.</p>
+                    <p>Geen templates, maar maatwerk. Van custom functionaliteiten tot unieke interacties.</p>
                     <a href="#" class="more-info-btn" onclick="event.stopPropagation(); openDetail('custom')">Meer info →</a>
                 </div>
             </div>
@@ -882,97 +978,97 @@
     <div id="detail-design" class="detail-section">
         <button class="close-detail" onclick="closeDetail()">×</button>
         <div class="detail-content">
-            <span style="font-size: 4rem; display: block; margin-bottom: 1rem;">🎨</span>
-            <h2 style="text-align: left; margin-bottom: 1rem;">Website Design</h2>
-            <p style="font-size: 1.2rem; color: var(--text-dark); margin-bottom: 2rem;">Visuele perfectie die converteert</p>
+            <span style="font-size: 3rem; display: block; margin-bottom: 1rem;">🎨</span>
+            <h2 style="text-align: left; margin-bottom: 0.5rem; font-size: 1.8rem;">Website Design</h2>
+            <p style="color: var(--text-dark); margin-bottom: 1.5rem;">Visuele perfectie die converteert</p>
             
-            <div style="line-height: 2; font-size: 1.1rem;">
-                <p><strong>UI/UX Design</strong><br>
-                Ik ontwerp interfaces die intuïtief aanvoelen. Elk element heeft een doel — van de kleur van een knop tot de spacing tussen tekst.</p>
+            <div style="line-height: 1.8; font-size: 1rem;">
+                <p style="margin-bottom: 1rem;"><strong>UI/UX Design</strong><br>
+                Interfaces die intuïtief aanvoelen. Elk element heeft een doel.</p>
                 
-                <p><strong>Responsive Design</strong><br>
-                Jouw website ziet er perfect uit op elk apparaat: desktop, tablet én mobiel. Geen inzoomgedoe meer voor je bezoekers.</p>
+                <p style="margin-bottom: 1rem;"><strong>Responsive Design</strong><br>
+                Perfect op elk apparaat: desktop, tablet én mobiel.</p>
                 
-                <p><strong>Brand Identity</strong><br>
-                Ik vertaal jouw merk naar een coherente online ervaring. Kleuren, fonts, tone-of-voice — alles klopt.</p>
+                <p style="margin-bottom: 1rem;"><strong>Brand Identity</strong><br>
+                Jouw merk vertaald naar een coherente online ervaring.</p>
                 
-                <p><strong>Conversion Optimized</strong><br>
-                Mooi is niet genoeg. Ik zorg dat je website bezoekers omzet in klanten met strategische call-to-actions en funnel-optimalisatie.</p>
+                <p style="margin-bottom: 1rem;"><strong>Conversion Optimized</strong><br>
+                Bezoekers omzetten in klanten met strategische calls-to-action.</p>
             </div>
             
-            <a href="#contact" class="cta-button" onclick="closeDetail()" style="margin-top: 2rem;">Interesse? Neem contact op</a>
+            <a href="#contact" class="cta-button" onclick="closeDetail()" style="margin-top: 1.5rem; width: 100%; justify-content: center;">Interesse? Neem contact op</a>
         </div>
     </div>
 
     <div id="detail-ai" class="detail-section">
         <button class="close-detail" onclick="closeDetail()">×</button>
         <div class="detail-content">
-            <span style="font-size: 4rem; display: block; margin-bottom: 1rem;">🤖</span>
-            <h2 style="text-align: left; margin-bottom: 1rem;">AI-Ondersteund Bouwen</h2>
-            <p style="font-size: 1.2rem; color: var(--text-dark); margin-bottom: 2rem;">De kracht van AI, de touch van een mens</p>
+            <span style="font-size: 3rem; display: block; margin-bottom: 1rem;">🤖</span>
+            <h2 style="text-align: left; margin-bottom: 0.5rem; font-size: 1.8rem;">AI-Ondersteund Bouwen</h2>
+            <p style="color: var(--text-dark); margin-bottom: 1.5rem;">De kracht van AI, de touch van een mens</p>
             
-            <div style="line-height: 2; font-size: 1.1rem;">
-                <p><strong>Snelle Development</strong><br>
-                Door AI te gebruiken voor repetitieve code-taken kan ik me focussen op wat echt telt: unieke features en perfecte afwerking.</p>
+            <div style="line-height: 1.8; font-size: 1rem;">
+                <p style="margin-bottom: 1rem;"><strong>Snelle Development</strong><br>
+                Focus op unieke features, AI doet de repetitieve taken.</p>
                 
-                <p><strong>Content Generatie</strong><br>
-                Van SEO-teksten tot productbeschrijvingen — AI helpt met de basis, ik voeg de menselijke touch toe.</p>
+                <p style="margin-bottom: 1rem;"><strong>Content Generatie</strong><br>
+                SEO-teksten en productbeschrijvingen met AI-support.</p>
                 
-                <p><strong>Testing & Optimalisatie</strong><br>
-                AI-tools analyseren automatisch performance en suggereren verbeteringen voor laadtijden en SEO.</p>
+                <p style="margin-bottom: 1rem;"><strong>Testing & Optimalisatie</strong><br>
+                Automatische analyse voor betere performance.</p>
                 
-                <p><strong>Toekomstbestendig</strong><br>
-                Je website is klaar voor de toekomst met AI-integraties zoals chatbots, personalisatie en automatische vertalingen.</p>
+                <p style="margin-bottom: 1rem;"><strong>Toekomstbestendig</strong><br>
+                Klaar voor chatbots, personalisatie en meer.</p>
             </div>
             
-            <a href="#contact" class="cta-button" onclick="closeDetail()" style="margin-top: 2rem;">Meer weten? Bel me</a>
+            <a href="#contact" class="cta-button" onclick="closeDetail()" style="margin-top: 1.5rem; width: 100%; justify-content: center;">Meer weten? Bel me</a>
         </div>
     </div>
 
     <div id="detail-custom" class="detail-section">
         <button class="close-detail" onclick="closeDetail()">×</button>
         <div class="detail-content">
-            <span style="font-size: 4rem; display: block; margin-bottom: 1rem;">✨</span>
-            <h2 style="text-align: left; margin-bottom: 1rem;">Maatwerk & Professioneel</h2>
-            <p style="font-size: 1.2rem; color: var(--text-dark); margin-bottom: 2rem;">Uniek zoals jouw bedrijf</p>
+            <span style="font-size: 3rem; display: block; margin-bottom: 1rem;">✨</span>
+            <h2 style="text-align: left; margin-bottom: 0.5rem; font-size: 1.8rem;">Maatwerk & Professioneel</h2>
+            <p style="color: var(--text-dark); margin-bottom: 1.5rem;">Uniek zoals jouw bedrijf</p>
             
-            <div style="line-height: 2; font-size: 1.1rem;">
-                <p><strong>Geen Templates</strong><br>
-                Elk project start met een leeg canvas. Jouw website is uniek en wordt niet met duizenden anderen gedeeld.</p>
+            <div style="line-height: 1.8; font-size: 1rem;">
+                <p style="margin-bottom: 1rem;"><strong>Geen Templates</strong><br>
+                Elk project start met een leeg canvas. 100% uniek.</p>
                 
-                <p><strong>Custom Functionaliteiten</strong><br>
-                Van boekingssystemen tot klantenportalen — ik bouw wat jij nodig hebt, niet wat een template toestaat.</p>
+                <p style="margin-bottom: 1rem;"><strong>Custom Functionaliteiten</strong><br>
+                Van boekingssystemen tot klantenportalen.</p>
                 
-                <p><strong>Schaalbaar</strong><br>
-                Gemaakt om te groeien. Of je nu 10 of 10.000 bezoekers per dag hebt, je website blijft soepel draaien.</p>
+                <p style="margin-bottom: 1rem;"><strong>Schaalbaar</strong><br>
+                Gemaakt om te groeien, van 10 tot 10.000 bezoekers.</p>
                 
-                <p><strong>Onderhoud & Support</strong><br>
-                Na oplevering ben ik er nog steeds voor je. Updates, beveiliging, backups — ik regel het allemaal.</p>
+                <p style="margin-bottom: 1rem;"><strong>Onderhoud & Support</strong><br>
+                Updates, beveiliging, backups — ik regel het.</p>
             </div>
             
-            <a href="#contact" class="cta-button" onclick="closeDetail()" style="margin-top: 2rem;">Start jouw project</a>
+            <a href="#contact" class="cta-button" onclick="closeDetail()" style="margin-top: 1.5rem; width: 100%; justify-content: center;">Start jouw project</a>
         </div>
     </div>
 
     <!-- About Section -->
-    <section id="over" style="background: rgba(255,255,255,0.02); border-radius: 40px; margin: 4rem auto;">
+    <section id="over" class="about-section">
         <h2>Wie ben ik?</h2>
         <div class="about-content">
             <div class="profile-card">
                 <div class="profile-inner">
                     <div class="avatar">PV</div>
-                    <h3 style="color: var(--white); font-size: 1.5rem; margin-bottom: 0.5rem;">Pieter van den Bergh</h3>
-                    <p style="color: var(--text-dark); margin-bottom: 1rem;">AP Webdesigns</p>
-                    <span class="status">Beschikbaar voor nieuwe projecten</span>
+                    <h3 style="color: var(--white); font-size: 1.3rem; margin-bottom: 0.3rem;">Pieter van den Bergh</h3>
+                    <p style="color: var(--text-dark); margin-bottom: 0.8rem; font-size: 0.9rem;">AP Webdesigns</p>
+                    <span class="status">Beschikbaar</span>
                 </div>
             </div>
             <div class="about-text">
                 <p>Ik ben de persoon achter AP Webdesigns. Ik bouw moderne websites met AI en focus op maatwerk voor bedrijven die serieus willen overkomen.</p>
-                <p>Persoonlijk, meedenkend en zonder dure praatjes. Ik geloof in transparantie: heldere prijzen, duidelijke communicatie en geen verborgen kosten.</p>
+                <p>Persoonlijk, meedenkend en zonder dure praatjes. Transparante prijzen, duidelijke communicatie, geen verborgen kosten.</p>
                 <div class="quote">
-                    "Transparantie en kwaliteit staan bij mij voorop. Ik bouw niet alleen websites, ik bouw partnerships."
+                    "Transparantie en kwaliteit staan voorop. Ik bouw niet alleen websites, ik bouw partnerships."
                 </div>
-                <p>Met een achtergrond in design en een passie voor technologie zorg ik dat jouw bedrijf online shined. Van lokale ondernemers tot groeiende bedrijven — ik help je graag vooruit.</p>
+                <p>Van lokale ondernemers tot groeiende bedrijven — ik help je graag vooruit.</p>
             </div>
         </div>
     </section>
@@ -985,35 +1081,35 @@
             <div class="audience-card">
                 <div class="audience-icon">🏪</div>
                 <h3>Lokale Bedrijven</h3>
-                <p style="color: var(--text-dark);">Van winkel tot dienstverlener — meer klanten in jouw regio</p>
+                <p style="color: var(--text-dark); font-size: 0.9rem;">Van winkel tot dienstverlener</p>
             </div>
             <div class="audience-card">
                 <div class="audience-icon">👤</div>
                 <h3>ZZP'ers</h3>
-                <p style="color: var(--text-dark);">Persoonlijk en professioneel — jouw persoonlijke merk online</p>
+                <p style="color: var(--text-dark); font-size: 0.9rem;">Persoonlijk en professioneel</p>
             </div>
             <div class="audience-card">
                 <div class="audience-icon">🏗️</div>
                 <h3>Bouw & Infra</h3>
-                <p style="color: var(--text-dark);">Sterke online presentatie voor projecten en aanbestedingen</p>
+                <p style="color: var(--text-dark); font-size: 0.9rem;">Sterke online presentatie</p>
             </div>
             <div class="audience-card">
                 <div class="audience-icon">🆕</div>
-                <h3>Startups & MKB</h3>
-                <p style="color: var(--text-dark);">Tijd voor verandering — van 0 naar professioneel</p>
+                <h3>Startups</h3>
+                <p style="color: var(--text-dark); font-size: 0.9rem;">Van 0 naar professioneel</p>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
     <section id="contact" class="contact-section">
-        <h2>Klaar voor de volgende stap?</h2>
-        <p class="section-subtitle">Ik bespreek graag jouw wensen en maak een offerte op maat</p>
+        <h2 style="font-size: 1.8rem;">Klaar voor de volgende stap?</h2>
+        <p class="section-subtitle" style="font-size: 1rem;">Ik bespreek graag jouw wensen en maak een offerte op maat</p>
         
         <div class="contact-container">
             <div class="contact-info">
                 <h3>Direct contact</h3>
-                <p>Liever direct bellen of mailen? Geen probleem! Ik ben bereikbaar via onderstaande gegevens.</p>
+                <p>Liever direct bellen of mailen? Geen probleem!</p>
                 
                 <div class="contact-details">
                     <div class="contact-item">
@@ -1026,7 +1122,7 @@
                     </div>
                     <div class="contact-item">
                         <div class="contact-icon">⏱️</div>
-                        <span style="color: var(--text);">Reactietijd: binnen 24 uur</span>
+                        <span style="color: var(--text); font-size: 0.9rem;">Reactie binnen 24u</span>
                     </div>
                 </div>
             </div>
@@ -1042,7 +1138,7 @@
 
                 <div class="form-group">
                     <label for="company">Bedrijfsnaam</label>
-                    <input type="text" id="company" name="company" placeholder="Naam van je bedrijf (optioneel)">
+                    <input type="text" id="company" name="company" placeholder="Naam van je bedrijf">
                 </div>
 
                 <div class="form-group">
@@ -1052,12 +1148,12 @@
 
                 <div class="form-group">
                     <label for="phone">Telefoonnummer</label>
-                    <input type="tel" id="phone" name="phone" placeholder="06-12345678 (optioneel)">
+                    <input type="tel" id="phone" name="phone" placeholder="06-12345678">
                 </div>
 
                 <div class="form-group">
                     <label for="message">Bericht *</label>
-                    <textarea id="message" name="message" rows="5" required placeholder="Vertel me over je project, wensen en doelen..."></textarea>
+                    <textarea id="message" name="message" rows="4" required placeholder="Vertel me over je project..."></textarea>
                 </div>
 
                 <button type="submit" class="submit-btn">Verstuur bericht →</button>
@@ -1071,10 +1167,10 @@
             <div class="social-links">
                 <a href="mailto:apvdbergh@outlook.com" title="Email">📧</a>
                 <a href="tel:+31633970044" title="Bel me">📱</a>
-                <a href="https://linkedin.com" title="LinkedIn" target="_blank">💼</a>
+                <a href="#" title="LinkedIn">💼</a>
             </div>
-            <p>&copy; 2025 AP Webdesigns. Alle rechten voorbehouden.</p>
-            <p style="margin-top: 0.5rem; font-size: 0.9rem;">Gebouwd met ❤️ en AI door Pieter van den Bergh</p>
+            <p style="font-size: 0.9rem;">&copy; 2025 AP Webdesigns</p>
+            <p style="margin-top: 0.5rem; font-size: 0.8rem;">Gemaakt met ❤️ door Pieter</p>
         </div>
     </footer>
 
@@ -1139,6 +1235,16 @@
             btn.textContent = 'Bezig met versturen...';
             btn.disabled = true;
         });
+
+        // Prevent zoom on double tap
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function (event) {
+            const now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
     </script>
 
 </body>
