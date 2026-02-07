@@ -89,7 +89,7 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* Navigation - FIXED FOR MOBILE */
+        /* Navigation */
         nav {
             position: fixed;
             top: 0;
@@ -874,24 +874,31 @@
         }
 
         .social-links a {
-            width: 45px;
-            height: 45px;
+            width: 50px;
+            height: 50px;
             background: rgba(59, 130, 246, 0.1);
-            border: 1px solid rgba(59, 130, 246, 0.3);
+            border: 2px solid rgba(59, 130, 246, 0.3);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--accent-light);
             text-decoration: none;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             transition: all 0.3s;
+            cursor: pointer;
         }
 
         .social-links a:hover {
-            background: var(--accent);
+            background: linear-gradient(135deg, var(--accent), var(--gradient-2));
             color: white;
-            transform: translateY(-3px);
+            transform: translateY(-5px) scale(1.1);
+            border-color: transparent;
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4);
+        }
+
+        .social-links a:active {
+            transform: translateY(-2px) scale(1.05);
         }
 
         /* Mobile fixes */
@@ -954,7 +961,7 @@
         <div class="hero-content">
             <div class="hero-badge">🚀 Beschikbaar voor nieuwe projecten</div>
             <h1>Moderne websites<br>slim gebouwd met AI</h1>
-            <p>Ik help bedrijven aan een professionele online aanwezigheid — snel, betrouwbaar en op maat gemaakt.</p>
+            <p>Wij helpen bedrijven aan een professionele online aanwezigheid — snel, betrouwbaar en op maat gemaakt.</p>
             <div class="cta-group">
                 <a href="#contact" class="cta-button">Laten we kennismaken →</a>
                 <a href="#diensten" class="cta-button secondary">Bekijk diensten</a>
@@ -964,8 +971,8 @@
 
     <!-- Services Section -->
     <section id="diensten">
-        <h2>Wat ik doe</h2>
-        <p class="section-subtitle">Van concept tot livegang — ik zorg voor een complete oplossing die past bij jouw bedrijf</p>
+        <h2>Wat wij doen</h2>
+        <p class="section-subtitle">Van concept tot livegang — wij zorgen voor een complete oplossing die past bij jouw bedrijf</p>
         
         <div class="services-container">
             <!-- Website Design -->
@@ -974,7 +981,7 @@
                 <h3>Website Design</h3>
                 <p>Strakke en moderne ontwerpen die vertrouwen uitstralen en jouw merk versterken.</p>
                 <div class="service-hover-content">
-                    <p>Ik creëer visueel verbluffende designs die converteren. Met oog voor typografie, kleurpsychologie en gebruikerservaring.</p>
+                    <p>Wij creëren visueel verbluffende designs die converteren. Met oog voor typografie, kleurpsychologie en gebruikerservaring.</p>
                     <a href="#" class="more-info-btn" onclick="event.stopPropagation(); openDetail('design')">Meer info →</a>
                 </div>
             </div>
@@ -1050,7 +1057,7 @@
                 Klaar voor chatbots, personalisatie en meer.</p>
             </div>
             
-            <a href="#contact" class="cta-button" onclick="closeDetail()" style="margin-top: 1.5rem; width: 100%; justify-content: center;">Meer weten? Bel me</a>
+            <a href="#contact" class="cta-button" onclick="closeDetail()" style="margin-top: 1.5rem; width: 100%; justify-content: center;">Meer weten? Bel ons</a>
         </div>
     </div>
 
@@ -1072,7 +1079,7 @@
                 Gemaakt om te groeien, van 10 tot 10.000 bezoekers.</p>
                 
                 <p style="margin-bottom: 1rem;"><strong>Onderhoud & Support</strong><br>
-                Updates, beveiliging, backups — ik regel het.</p>
+                Updates, beveiliging, backups — wij regelen het.</p>
             </div>
             
             <a href="#contact" class="cta-button" onclick="closeDetail()" style="margin-top: 1.5rem; width: 100%; justify-content: center;">Start jouw project</a>
@@ -1081,7 +1088,7 @@
 
     <!-- About Section -->
     <section id="over" class="about-section">
-        <h2>Wie ben ik?</h2>
+        <h2>Over ons</h2>
         <div class="about-content">
             <div class="profile-card">
                 <div class="profile-inner">
@@ -1092,12 +1099,12 @@
                 </div>
             </div>
             <div class="about-text">
-                <p>Ik ben de persoon achter AP Webdesigns. Ik bouw moderne websites met AI en focus op maatwerk voor bedrijven die serieus willen overkomen.</p>
+                <p>Wij zijn AP Webdesigns. Wij bouwen moderne websites met AI en focussen op maatwerk voor bedrijven die serieus willen overkomen.</p>
                 <p>Persoonlijk, meedenkend en zonder dure praatjes. Transparante prijzen, duidelijke communicatie, geen verborgen kosten.</p>
                 <div class="quote">
-                    "Transparantie en kwaliteit staan voorop. Ik bouw niet alleen websites, ik bouw partnerships."
+                    "Transparantie en kwaliteit staan bij ons voorop. Wij bouwen niet alleen websites, wij bouwen partnerships."
                 </div>
-                <p>Van lokale ondernemers tot groeiende bedrijven — ik help je graag vooruit.</p>
+                <p>Van lokale ondernemers tot groeiende bedrijven — wij helpen je graag vooruit.</p>
             </div>
         </div>
     </section>
@@ -1133,7 +1140,7 @@
     <!-- Contact Section -->
     <section id="contact" class="contact-section">
         <h2 style="font-size: 1.8rem;">Klaar voor de volgende stap?</h2>
-        <p class="section-subtitle" style="font-size: 1rem;">Ik bespreek graag jouw wensen en maak een offerte op maat</p>
+        <p class="section-subtitle" style="font-size: 1rem;">Wij bespreken graag jouw wensen en maken een offerte op maat</p>
         
         <div class="contact-container">
             <div class="contact-info">
@@ -1182,7 +1189,7 @@
 
                 <div class="form-group">
                     <label for="message">Bericht *</label>
-                    <textarea id="message" name="message" rows="4" required placeholder="Vertel me over je project..."></textarea>
+                    <textarea id="message" name="message" rows="4" required placeholder="Vertel ons over je project..."></textarea>
                 </div>
 
                 <button type="submit" class="submit-btn">Verstuur bericht →</button>
@@ -1194,9 +1201,9 @@
     <footer>
         <div class="footer-content">
             <div class="social-links">
-                <a href="mailto:apvdbergh@outlook.com" title="Email">📧</a>
-                <a href="tel:+31633970044" title="Bel me">📱</a>
-                <a href="#" title="LinkedIn">💼</a>
+                <a href="mailto:apvdbergh@outlook.com" title="Stuur een email">✉️</a>
+                <a href="tel:+31633970044" title="Bel ons">📞</a>
+                <a href="https://wa.me/31633970044" title="WhatsApp ons" target="_blank">💬</a>
             </div>
             <p style="font-size: 0.9rem;">&copy; 2025 AP Webdesigns. Alle rechten voorbehouden.</p>
         </div>
