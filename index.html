@@ -44,6 +44,7 @@
             width: 100%;
             min-height: 100vh;
             position: relative;
+            padding-top: 70px; /* Ruimte voor fixed nav */
         }
 
         /* Prevent horizontal scroll */
@@ -88,19 +89,24 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* Navigation */
+        /* Navigation - FIXED FOR MOBILE */
         nav {
             position: fixed;
             top: 0;
+            left: 0;
             width: 100%;
-            background: rgba(15, 23, 42, 0.95);
+            background: rgba(15, 23, 42, 0.98);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(59, 130, 246, 0.3);
             z-index: 1000;
-            padding: 1rem 0;
+            padding: 0.8rem 0;
+            height: 70px;
+            display: flex;
+            align-items: center;
         }
 
         .nav-container {
+            width: 100%;
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 1rem;
@@ -110,29 +116,33 @@
         }
 
         .logo {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 800;
             background: linear-gradient(135deg, var(--accent-light), var(--gradient-3));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-decoration: none;
             letter-spacing: -1px;
+            white-space: nowrap;
         }
 
         .nav-links {
             display: flex;
-            gap: 1.5rem;
+            gap: 1.2rem;
             list-style: none;
+            margin: 0;
+            padding: 0;
         }
 
         .nav-links a {
             color: var(--text);
             text-decoration: none;
             font-weight: 500;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             position: relative;
             padding: 0.5rem 0;
             transition: color 0.3s;
+            white-space: nowrap;
         }
 
         .nav-links a::after {
@@ -156,12 +166,12 @@
 
         /* Hero Section */
         .hero {
-            min-height: 100vh;
+            min-height: calc(100vh - 70px);
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 6rem 1rem 3rem;
+            padding: 2rem 1rem;
             position: relative;
             overflow: hidden;
             width: 100%;
@@ -752,7 +762,7 @@
             justify-content: center;
         }
 
-        /* Form Styles - FIXED FOR MOBILE */
+        /* Form Styles */
         .contact-form {
             background: rgba(255, 255, 255, 0.05);
             padding: 1.5rem;
@@ -783,7 +793,7 @@
             border-radius: 10px;
             color: var(--white);
             font-family: inherit;
-            font-size: 16px; /* Prevents zoom on iOS */
+            font-size: 16px;
             transition: all 0.3s;
             -webkit-appearance: none;
         }
@@ -839,7 +849,7 @@
             display: flex;
             justify-content: center;
             gap: 1rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
 
         .social-links a {
@@ -863,12 +873,10 @@
             transform: translateY(-3px);
         }
 
-        /* Prevent zoom and scroll issues */
+        /* Mobile fixes */
         @media screen and (max-width: 768px) {
-            html, body {
-                position: relative;
-                overflow-x: hidden;
-                width: 100%;
+            body {
+                padding-top: 70px;
             }
             
             section {
@@ -886,6 +894,14 @@
                 margin-left: 0.5rem;
                 margin-right: 0.5rem;
                 width: calc(100% - 1rem);
+            }
+
+            .nav-links {
+                gap: 0.8rem;
+            }
+
+            .nav-links a {
+                font-size: 0.8rem;
             }
         }
 
@@ -1169,8 +1185,7 @@
                 <a href="tel:+31633970044" title="Bel me">📱</a>
                 <a href="#" title="LinkedIn">💼</a>
             </div>
-            <p style="font-size: 0.9rem;">&copy; 2025 AP Webdesigns</p>
-            <p style="margin-top: 0.5rem; font-size: 0.8rem;">Gemaakt met ❤️ door Pieter</p>
+            <p style="font-size: 0.9rem;">&copy; 2025 AP Webdesigns. Alle rechten voorbehouden.</p>
         </div>
     </footer>
 
